@@ -69,5 +69,39 @@ namespace MoodAnalyzerTesting
             //Assert
             Assert.AreEqual(expectedMsg, actualMsg);
         }
+
+        [TestMethod]
+        public void AnalyzeEmptyExceptionHandling()
+        {
+            //Arrange
+            string msg = "";
+            MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
+
+            //Act => Assert
+            Assert.ThrowsException<MoodAnalysisException>(() => moodAnalyser.AnalyseMood());
+        }
+
+        [TestMethod]
+        public void AnalyzeEmptyExceptionMessage()
+        {
+            //Arrange
+            string msg = "";
+            MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
+            string expectedMsg = "EMPTY";
+            string actualMsg = "";
+
+            //Act
+            try
+            {
+                actualMsg = moodAnalyser.AnalyseMood();
+            }
+            catch (MoodAnalysisException exception)
+            {
+                actualMsg = exception.Message;
+            }
+
+            //Assert
+            Assert.AreEqual(expectedMsg, actualMsg);
+        }
     }
 }
