@@ -23,7 +23,14 @@ namespace MoodAnalyzerProgram
         {
             string regexStr = "^(.*[ ])*[sSaAdD]{3}([ ].*)*";
             Regex regexExp = new Regex(regexStr);
-            _mood = regexExp.IsMatch(this._message) ? "SAD" : "HAPPY";
+            try
+            {
+                _mood = regexExp.IsMatch(this._message) ? "SAD" : "HAPPY";
+            }
+            catch(Exception ex)
+            {
+                return "HAPPY";
+            }
             return _mood;
         }
     }
