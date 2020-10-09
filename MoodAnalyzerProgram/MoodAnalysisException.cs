@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MoodAnalyzerProgram
 {
-    class MoodAnalysisException : Exception
+    public class MoodAnalysisException : Exception
     {
         string _message;
         public MoodAnalysisException(string message):base(message)
