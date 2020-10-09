@@ -35,6 +35,21 @@ namespace MoodAnalyzerTesting
             //Assert
             Assert.AreEqual(expectedMood, actualMood);
         }
+        
+        [TestMethod]
+        public void AnalyzeExceptionHandling()
+        {
+            //Arrange
+            string msg = null;
+            MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
+            string expectedMood = "HAPPY";
+
+            //Act
+            string actualMood = moodAnalyser.AnalyseMood();
+
+            //Assert
+            Assert.AreEqual(expectedMood, actualMood);
+        }
 
 
     }
