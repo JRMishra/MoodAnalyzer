@@ -8,12 +8,6 @@ namespace MoodAnalyzerProgram
     {
         string _mood;
         string _message;
-        enum Errors
-        {
-            NULL,
-            EMPTY,
-            OTHERS
-        }
 
         public MoodAnalyser()
         {
@@ -27,24 +21,22 @@ namespace MoodAnalyzerProgram
 
         public string AnalyseMood()
         {
-            string regexStr = "^(.*[ ])*[sSaAdD]{3}([ ].*)*";
-            Regex regexExp = new Regex(regexStr);
-
-            if (_message == null)
-                throw new MoodAnalysisException(Errors.NULL.ToString());
-            else if (_message.Length == 0)
-                throw new MoodAnalysisException(Errors.EMPTY.ToString());
-
             try
-            {   
-                _mood = regexExp.IsMatch(this._message) ? "SAD" : "HAPPY";
-            }
-            catch (MoodAnalysisException e)
             {
-                throw new MoodAnalysisException(Errors.OTHERS.ToString()+" "+e.Message);
-            }
+                if (this._message.Equals(string.Empty))
+                {
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_MESSAGE, "Mood should not be empty");
+                }
 
-            return _mood;
+                if (this._message.ToLower().Contains("sad"))
+                    return "SAD";
+                else
+                    return "HAPPY";
+            }
+            catch (NullReferenceException)
+            {
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MESSAGE, "Mood should not be null");
+            }
         }
     }
 }

@@ -44,7 +44,7 @@ namespace MoodAnalyzerTesting
             MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
             
             //Act => Assert
-            Assert.ThrowsException<MoodAnalysisException>(()=>moodAnalyser.AnalyseMood());
+            Assert.ThrowsException<MoodAnalyserException>(()=>moodAnalyser.AnalyseMood());
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace MoodAnalyzerTesting
             //Arrange
             string msg = null;
             MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
-            string expectedMsg = "NULL";
+            string expectedMsg = "Mood should not be null";
             string actualMsg="";
 
             //Act
@@ -61,7 +61,7 @@ namespace MoodAnalyzerTesting
             {
                 actualMsg = moodAnalyser.AnalyseMood();
             }
-            catch(MoodAnalysisException exception)
+            catch(MoodAnalyserException exception)
             {
                 actualMsg = exception.Message;
             }
@@ -78,7 +78,7 @@ namespace MoodAnalyzerTesting
             MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
 
             //Act => Assert
-            Assert.ThrowsException<MoodAnalysisException>(() => moodAnalyser.AnalyseMood());
+            Assert.ThrowsException<MoodAnalyserException>(() => moodAnalyser.AnalyseMood());
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace MoodAnalyzerTesting
             //Arrange
             string msg = "";
             MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
-            string expectedMsg = "EMPTY";
+            string expectedMsg = "Mood should not be empty";
             string actualMsg = "";
 
             //Act
@@ -95,7 +95,7 @@ namespace MoodAnalyzerTesting
             {
                 actualMsg = moodAnalyser.AnalyseMood();
             }
-            catch (MoodAnalysisException exception)
+            catch (MoodAnalyserException exception)
             {
                 actualMsg = exception.Message;
             }
@@ -103,5 +103,6 @@ namespace MoodAnalyzerTesting
             //Assert
             Assert.AreEqual(expectedMsg, actualMsg);
         }
+
     }
 }
