@@ -11,9 +11,7 @@ namespace MoodAnalyzerProgram
         public static object BuildMoodAnalysis(string className, string constructor)
         {
             Type typeRef;
-
-            
-                typeRef = Type.GetType("MoodAnalyzerProgram." + className);
+            typeRef = Type.GetType("MoodAnalyzerProgram." + className);
 
             if(typeRef == null)
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
@@ -43,7 +41,7 @@ namespace MoodAnalyzerProgram
         public static string InvokeMoodAnalysis(string methodName, string message)
         {
             Type typeRef = Type.GetType("MoodAnalyzerProgram.MoodAnalyser");
-            object instance = BuildMoodAnalysis("MoodAnalyzerProgram.MoodAnalyser", "MoodAnalyser",message);
+            object instance = BuildMoodAnalysis("MoodAnalyser", "MoodAnalyser", message);
 
             MethodInfo methodInfo = typeRef.GetMethod(methodName);
             if (methodName == null)

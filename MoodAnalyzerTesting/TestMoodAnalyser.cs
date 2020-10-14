@@ -234,5 +234,20 @@ namespace MoodAnalyzerTesting
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void TestInvokeMoodAnalysis_ShouldReturnMoodAsPerMessage()
+        {
+            //Arrange
+            string methodName = "AnalyseMood";
+            string message = "he is sad";
+            string expectedMood = "SAD";
+
+            //Add
+            string actualMood = MoodAnalysisReflecter.InvokeMoodAnalysis(methodName, message);
+
+            //Assert
+            Assert.AreEqual(expectedMood, actualMood);
+        }
+
     }
 }
