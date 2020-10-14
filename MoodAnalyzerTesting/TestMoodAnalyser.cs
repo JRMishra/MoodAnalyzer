@@ -183,5 +183,30 @@ namespace MoodAnalyzerTesting
             //Assert
             expectedInstance.Equals(actualInstance);
         }
+
+        [TestMethod]
+        public void TestParameterizedMoodAnalysisBuilder_WrongClassName_ThrowClassNotFoundException()
+        {
+            //Arrange
+            string className = "MoodAnalyserWrongName";
+            string constructorName = className;
+            string message = "She is happy";
+            string expected = "Class not found";
+            string actual;
+
+            //Add
+            try
+            {
+                object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className, constructorName,message);
+                actual = actualInstance.ToString();
+            }
+            catch (MoodAnalyserException e)
+            {
+                actual = e.Message;
+            }
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
