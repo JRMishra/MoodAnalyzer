@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using System.Net.Http;
+using System.Runtime.CompilerServices;
 
 namespace MoodAnalyzerProgram
 {
@@ -56,11 +57,11 @@ namespace MoodAnalyzerProgram
             Type typeRef = Type.GetType("MoodAnalyzerProgram.MoodAnalyser");
             object instance = BuildMoodAnalysis("MoodAnalyser", "MoodAnalyser");
 
-            FieldInfo fieldInfo = typeRef.GetField(fieldName);
+            FieldInfo fieldInfo = typeRef.GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
             if (fieldInfo == null)
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_FIELD, "Field not found");
 
-            fieldInfo.SetValue(instance, new object[] { message });
+            fieldInfo.SetValue(instance, message);
 
             MethodInfo methodInfo = typeRef.GetMethod("AnalyseMood");
             object mood = methodInfo.Invoke(instance, null);

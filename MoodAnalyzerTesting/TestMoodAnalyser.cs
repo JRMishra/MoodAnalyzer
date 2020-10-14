@@ -272,5 +272,21 @@ namespace MoodAnalyzerTesting
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void TestSetFieldValue_ShouldReturnCorrectMood()
+        {
+            //Arrange
+            string fieldName = "_message";
+            string message = "he is sad";
+            string expectedMood = "SAD";
+
+            //Add
+            string actualMood = MoodAnalysisReflecter.SetFieldValue(fieldName, message);
+
+            //Assert
+            Assert.AreEqual(expectedMood, actualMood);
+        }
+
+
     }
 }
