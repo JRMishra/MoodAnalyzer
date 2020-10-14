@@ -8,9 +8,12 @@ namespace MoodAnalyzerProgram
 {
     public class MoodAnalysisBuilder
     {
-        public static object BuildMoodAnalysis(string className)
+        public static object BuildMoodAnalysis(string className, string constructor)
         {
             Type typeRef;
+
+            if (constructor != className)
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Constructor not found");
             try
             {
                 typeRef = Type.GetType("MoodAnalyzerProgram." + className);
@@ -19,7 +22,7 @@ namespace MoodAnalyzerProgram
             {
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
             }
-
+            
             ConstructorInfo constructorInfo = typeRef.GetConstructor(Type.EmptyTypes);
             object instance = constructorInfo.Invoke(null);
 

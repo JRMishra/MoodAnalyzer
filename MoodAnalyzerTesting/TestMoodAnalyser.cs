@@ -110,10 +110,11 @@ namespace MoodAnalyzerTesting
         {
             //Arrange
             string className = "MoodAnalyser";
+            string constructorName = className;
             object expectedInstance = new MoodAnalyser();
 
             //Add
-            object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className);
+            object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className,constructorName);
 
             //Assert
             expectedInstance.Equals(actualInstance);
