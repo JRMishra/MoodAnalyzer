@@ -44,8 +44,8 @@ namespace MoodAnalyzerProgram
             object instance = BuildMoodAnalysis("MoodAnalyser", "MoodAnalyser", message);
 
             MethodInfo methodInfo = typeRef.GetMethod(methodName);
-            if (methodName == null)
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "No such method found");
+            if (methodInfo == null)
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "Method not found");
 
             object mood = methodInfo.Invoke(instance, null);
             return mood.ToString();

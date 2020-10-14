@@ -249,5 +249,28 @@ namespace MoodAnalyzerTesting
             Assert.AreEqual(expectedMood, actualMood);
         }
 
+        [TestMethod]
+        public void TestInvokeMoodAnalysis_WrongMethodName_ThrowMethodNotFoundException()
+        {
+            //Arrange
+            string methodName = "AnalyseMoodWrongName";
+            string message = "he is sad";
+            string expected = "Method not found";
+            string actual;
+
+            //Add
+            try
+            {
+                actual = MoodAnalysisReflecter.InvokeMoodAnalysis(methodName, message);
+            }
+            catch (MoodAnalyserException e)
+            {
+                actual = e.Message;
+            }
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
