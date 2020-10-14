@@ -12,17 +12,15 @@ namespace MoodAnalyzerProgram
         {
             Type typeRef;
 
+            
+                typeRef = Type.GetType("MoodAnalyzerProgram." + className);
+
+            if(typeRef == null)
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
+
             if (constructor != className)
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Constructor not found");
-            try
-            {
-                typeRef = Type.GetType("MoodAnalyzerProgram." + className);
-            }
-            catch(Exception)
-            {
-                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
-            }
-            
+
             ConstructorInfo constructorInfo = typeRef.GetConstructor(Type.EmptyTypes);
             object instance = constructorInfo.Invoke(null);
 
