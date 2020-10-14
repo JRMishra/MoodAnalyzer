@@ -114,7 +114,7 @@ namespace MoodAnalyzerTesting
             object expectedInstance = new MoodAnalyser();
 
             //Add
-            object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className, constructorName);
+            object actualInstance = MoodAnalysisReflecter.BuildMoodAnalysis(className, constructorName);
 
             //Assert
             expectedInstance.Equals(actualInstance);
@@ -132,7 +132,7 @@ namespace MoodAnalyzerTesting
             //Add
             try
             {
-                object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className, constructorName);
+                object actualInstance = MoodAnalysisReflecter.BuildMoodAnalysis(className, constructorName);
                 actual = actualInstance.ToString();
             }
             catch (MoodAnalyserException e)
@@ -156,7 +156,7 @@ namespace MoodAnalyzerTesting
             //Add
             try
             {
-                object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className, constructorName);
+                object actualInstance = MoodAnalysisReflecter.BuildMoodAnalysis(className, constructorName);
                 actual = actualInstance.ToString();
             }
             catch (MoodAnalyserException e)
@@ -178,7 +178,7 @@ namespace MoodAnalyzerTesting
             object expectedInstance = new MoodAnalyser(message);
 
             //Add
-            object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className, constructorName,message);
+            object actualInstance = MoodAnalysisReflecter.BuildMoodAnalysis(className, constructorName,message);
 
             //Assert
             expectedInstance.Equals(actualInstance);
@@ -197,7 +197,7 @@ namespace MoodAnalyzerTesting
             //Add
             try
             {
-                object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className, constructorName,message);
+                object actualInstance = MoodAnalysisReflecter.BuildMoodAnalysis(className, constructorName,message);
                 actual = actualInstance.ToString();
             }
             catch (MoodAnalyserException e)
@@ -222,7 +222,7 @@ namespace MoodAnalyzerTesting
             //Add
             try
             {
-                object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className, constructorName,message);
+                object actualInstance = MoodAnalysisReflecter.BuildMoodAnalysis(className, constructorName,message);
                 actual = actualInstance.ToString();
             }
             catch (MoodAnalyserException e)

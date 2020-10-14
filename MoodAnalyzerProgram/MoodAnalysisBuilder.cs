@@ -6,7 +6,7 @@ using System.Net.Http;
 
 namespace MoodAnalyzerProgram
 {
-    public class MoodAnalysisBuilder
+    public class MoodAnalysisReflecter
     {
         public static object BuildMoodAnalysis(string className, string constructor)
         {
@@ -39,5 +39,19 @@ namespace MoodAnalyzerProgram
 
             return instance;
         }
+
+        public static string InvokeMoodAnalysis(string methodName, string message)
+        {
+            Type typeRef = Type.GetType("MoodAnalyzerProgram.MoodAnalyser");
+            object instance = BuildMoodAnalysis("MoodAnalyzerProgram.MoodAnalyser", "MoodAnalyser",message);
+
+            MethodInfo methodInfo = typeRef.GetMethod(methodName);
+            if (methodName == null)
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_METHOD, "No such method found");
+
+            object mood = methodInfo.Invoke(instance, null);
+            return mood.ToString();
+        }
+
     }
 }
