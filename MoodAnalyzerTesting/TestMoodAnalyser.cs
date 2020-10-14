@@ -287,6 +287,29 @@ namespace MoodAnalyzerTesting
             Assert.AreEqual(expectedMood, actualMood);
         }
 
+        [TestMethod]
+        public void TestSetFieldValue_WrongFieldName_ThrowExceptionFieldNotFound()
+        {
+            //Arrange
+            string fieldName = "wrongField";
+            string message = "he is happy";
+            string expected = "Field not found";
+            string actual;
+            
+            //Add
+            try
+            {
+                actual = MoodAnalysisReflecter.SetFieldValue(fieldName, message);
+            }
+            catch (MoodAnalyserException e)
+            {
+                actual = e.Message;
+            }
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
 
     }
 }
