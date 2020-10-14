@@ -310,6 +310,28 @@ namespace MoodAnalyzerTesting
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void TestSetFieldValue_NullMessage_ThrowExceptionNullMessage()
+        {
+            //Arrange
+            string fieldName = "_message";
+            string message = null;
+            string expected = "Message should not be null";
+            string actual;
+
+            //Add
+            try
+            {
+                actual = MoodAnalysisReflecter.SetFieldValue(fieldName, message);
+            }
+            catch (MoodAnalyserException e)
+            {
+                actual = e.Message;
+            }
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
 
     }
 }

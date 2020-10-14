@@ -54,18 +54,20 @@ namespace MoodAnalyzerProgram
 
         public static string SetFieldValue(string fieldName, string message)
         {
+            if(message==null)
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MESSAGE, "Message should not be null");
+
             Type typeRef = Type.GetType("MoodAnalyzerProgram.MoodAnalyser");
             object instance = BuildMoodAnalysis("MoodAnalyser", "MoodAnalyser");
 
             FieldInfo fieldInfo = typeRef.GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
             if (fieldInfo == null)
                 throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_FIELD, "Field not found");
-
-            fieldInfo.SetValue(instance, message);
-
-            MethodInfo methodInfo = typeRef.GetMethod("AnalyseMood");
-            object mood = methodInfo.Invoke(instance, null);
             
+            fieldInfo.SetValue(instance, message);
+            MethodInfo methodInfo = typeRef.GetMethod("AnalyseMood");
+
+            object mood = methodInfo.Invoke(instance, null);
             return mood.ToString();
         }
     }
