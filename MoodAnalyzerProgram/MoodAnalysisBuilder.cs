@@ -26,5 +26,23 @@ namespace MoodAnalyzerProgram
 
             return instance;
         }
+
+        public static object BuildMoodAnalysis(string className, string constructor, string message)
+        {
+            Type typeRef;
+            typeRef = Type.GetType("MoodAnalyzerProgram." + className);
+
+            if (typeRef == null)
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CLASS, "Class not found");
+
+            if (constructor != className)
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NO_SUCH_CONSTRUCTOR, "Constructor not found");
+
+            ConstructorInfo constructorInfo = typeRef.GetConstructor(new Type[] {typeof(string) });
+            object[] parameters = new object[] { message };
+            object instance = constructorInfo.Invoke(parameters);
+
+            return instance;
+        }
     }
 }
