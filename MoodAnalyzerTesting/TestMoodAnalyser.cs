@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyzerProgram;
+using System.Runtime.Serialization;
 
 namespace MoodAnalyzerTesting
 {
@@ -35,16 +36,16 @@ namespace MoodAnalyzerTesting
             //Assert
             Assert.AreEqual(expectedMood, actualMood);
         }
-        
+
         [TestMethod]
         public void AnalyzeNullExceptionHandling()
         {
             //Arrange
             string msg = null;
             MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
-            
+
             //Act => Assert
-            Assert.ThrowsException<MoodAnalyserException>(()=>moodAnalyser.AnalyseMood());
+            Assert.ThrowsException<MoodAnalyserException>(() => moodAnalyser.AnalyseMood());
         }
 
         [TestMethod]
@@ -54,14 +55,14 @@ namespace MoodAnalyzerTesting
             string msg = null;
             MoodAnalyser moodAnalyser = new MoodAnalyser(msg);
             string expectedMsg = "Mood should not be null";
-            string actualMsg="";
+            string actualMsg = "";
 
             //Act
             try
             {
                 actualMsg = moodAnalyser.AnalyseMood();
             }
-            catch(MoodAnalyserException exception)
+            catch (MoodAnalyserException exception)
             {
                 actualMsg = exception.Message;
             }
@@ -104,5 +105,32 @@ namespace MoodAnalyzerTesting
             Assert.AreEqual(expectedMsg, actualMsg);
         }
 
+        [TestMethod]
+        public void MoodAnalysisBuilder_ShouldReturnMoodAnalysisObject()
+        {
+            //Arrange
+            string className = "MoodAnalyser";
+            object expectedInstance = new MoodAnalyser();
+
+            //Add
+            object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className);
+
+            //Assert
+            expectedInstance.Equals(actualInstance);
+        }
+
+        [TestMethod]
+        public void MoodAnalysisBuilder_ShouldThrowInvaliClassException()
+        {
+            //Arrange
+            string className = "MoodAnalyserInvalid";
+            object expectedInstance = new MoodAnalyser();
+
+            //Add
+            object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className);
+
+            //Assert
+            expectedInstance.Equals(actualInstance);
+        }
     }
 }
