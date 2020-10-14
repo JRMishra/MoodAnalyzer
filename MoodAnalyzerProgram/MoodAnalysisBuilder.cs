@@ -8,7 +8,7 @@ namespace MoodAnalyzerProgram
 {
     public class MoodAnalysisBuilder
     {
-        public static object BuildMoodAnalysis(string className, string constructor)
+        public static object BuildMoodAnalysis(string className)
         {
             Type typeRef;
             try

@@ -119,18 +119,6 @@ namespace MoodAnalyzerTesting
             expectedInstance.Equals(actualInstance);
         }
 
-        [TestMethod]
-        public void MoodAnalysisBuilder_ShouldThrowInvaliClassException()
-        {
-            //Arrange
-            string className = "MoodAnalyserInvalid";
-            object expectedInstance = new MoodAnalyser();
-
-            //Add
-            object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className);
-
-            //Assert
-            expectedInstance.Equals(actualInstance);
-        }
+        
     }
 }
