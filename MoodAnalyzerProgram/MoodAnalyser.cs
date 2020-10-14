@@ -19,6 +19,8 @@ namespace MoodAnalyzerProgram
             this._message = message;
         }
 
+        public string Message { get => _message; set => _message = value; }
+
         public string AnalyseMood()
         {
             try
