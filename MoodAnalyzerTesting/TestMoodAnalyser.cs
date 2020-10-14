@@ -121,7 +121,7 @@ namespace MoodAnalyzerTesting
         }
 
         [TestMethod]
-        public void TestMoodAnalysisBuilder_WrongClassName_ReturnClassNotFoundException()
+        public void TestMoodAnalysisBuilder_WrongClassName_ThrowClassNotFoundException()
         {
             //Arrange
             string className = "MoodAnalyserWrongName";
@@ -136,6 +136,30 @@ namespace MoodAnalyzerTesting
                 actual = actualInstance.ToString();
             }
             catch(MoodAnalyserException e)
+            {
+                actual = e.Message;
+            }
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMoodAnalysisBuilder_WrongConstructorName_ThrowConstructorNotFoundException()
+        {
+            //Arrange
+            string className = "MoodAnalyser";
+            string constructorName = "Wrong"+className;
+            string expected = "Constructor not found";
+            string actual;
+
+            //Add
+            try
+            {
+                object actualInstance = MoodAnalysisBuilder.BuildMoodAnalysis(className, constructorName);
+                actual = actualInstance.ToString();
+            }
+            catch (MoodAnalyserException e)
             {
                 actual = e.Message;
             }
